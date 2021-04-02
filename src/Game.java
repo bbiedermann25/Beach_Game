@@ -5,16 +5,22 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
 public class Game extends JPanel{
-    private Character character;
+    private CharacterController controller = new CharacterController(KeyEvent.VK_RIGHT,
+            KeyEvent.VK_LEFT,KeyEvent.VK_UP, KeyEvent.VK_DOWN);
+    private Character character = new Character(350,700, getSize().width, getSize().height,
+            new Dimension(20, 28), controller);
 
     public Game(){
         setFocusable(true);
         setSize(700, 1000);
         Timer timer = new Timer(16, new TimerListener());
         timer.start();
-        CharacterController charactercontroller = new CharacterController(KeyEvent.VK_RIGHT, KeyEvent.VK_LEFT);
-        addKeyListener(charactercontroller);
-        character = new Character(10,10, new Dimension(20, 28), charactercontroller);
+        controller = new CharacterController(KeyEvent.VK_RIGHT, KeyEvent.VK_LEFT,KeyEvent.VK_UP,
+                KeyEvent.VK_DOWN);
+        addKeyListener(controller);
+        character = new Character(350,700, getSize().width, getSize().height,
+                new Dimension(20, 28), controller);
+
     }
 
     @Override
