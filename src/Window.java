@@ -6,7 +6,6 @@ import java.io.File;
 public class Window extends JFrame {
     public static int Height;
     public static int Width;
-    private Image image;
 
     public Window() {
         Height = 600;
