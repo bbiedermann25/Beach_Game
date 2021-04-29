@@ -1,9 +1,13 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
-public class Character {
+public class Character extends JPanel{
     private int x, y;
     private int width, height;
     private int mx = 0, my = 0;
@@ -36,15 +40,14 @@ public class Character {
     public void paint(Graphics g){
         int m = mx % 20;
         int n = my % 20;
-        g.fillRect(x, y, size.width, size.height);
-
         if (m == 0 && n == 0){
             switch (orientation) {
-                case 0 -> g.drawImage(idle, x, y, null);
-                case 1 -> g.drawImage(right_idle, x, y, null);
-                case 2 -> g.drawImage(left_idle, x, y, null);
-                case 3 -> g.drawImage(down_idle, x, y, null);
+                case 0 -> g.drawImage(idle, x, y,null);
+                case 1 -> g.drawImage(right_idle, x, y, new Color(0,0,0,1), null);
+                case 2 -> g.drawImage(left_idle, x, y, new Color(0,0,0,1), null);
+                case 3 -> g.drawImage(down_idle, x, y, new Color(0,0,0,1), null);
             }
+
         }
 
         else if (m > 0 && m < 6){
