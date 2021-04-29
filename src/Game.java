@@ -12,13 +12,14 @@ public class Game extends JPanel{
 
     public Game(){
         setFocusable(true);
-        setSize(700, 1000);
+        setOpaque(false);
+        setSize(800, 600);
         Timer timer = new Timer(16, new TimerListener());
         timer.start();
         controller = new CharacterController(KeyEvent.VK_RIGHT, KeyEvent.VK_LEFT,KeyEvent.VK_UP,
                 KeyEvent.VK_DOWN);
         addKeyListener(controller);
-        character = new Character(350,700, getSize().width, getSize().height,
+        character = new Character(350,350, getSize().width, getSize().height,
                 new Dimension(20, 28), controller);
 
     }

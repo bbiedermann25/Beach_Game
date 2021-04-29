@@ -43,9 +43,9 @@ public class Character extends JPanel{
         if (m == 0 && n == 0){
             switch (orientation) {
                 case 0 -> g.drawImage(idle, x, y,null);
-                case 1 -> g.drawImage(right_idle, x, y, new Color(0,0,0,1), null);
-                case 2 -> g.drawImage(left_idle, x, y, new Color(0,0,0,1), null);
-                case 3 -> g.drawImage(down_idle, x, y, new Color(0,0,0,1), null);
+                case 1 -> g.drawImage(right_idle, x, y,null);
+                case 2 -> g.drawImage(left_idle, x, y,null);
+                case 3 -> g.drawImage(down_idle, x, y, null);
             }
 
         }
