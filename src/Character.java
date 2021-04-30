@@ -40,6 +40,14 @@ public class Character extends JPanel{
         this.pauseMenu = pauseMenu;
     }
 
+    public int getX(){
+        return x;
+    }
+
+    public int getY(){
+        return y;
+    }
+
     public void paint(Graphics g){
         int m = mx % 20;
         int n = my % 20;

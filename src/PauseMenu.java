@@ -19,8 +19,6 @@ public class PauseMenu extends JPanel {
 
     public void paint(Graphics g){
         if(paused){
-            setSize(new Dimension(width, height));
-            setBackground(new Color(0, 0, 0, 50));
             g.drawImage(pauseImg, 0, 0, null);
             setOpaque(false);
         }else{
