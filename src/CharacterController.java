@@ -3,24 +3,25 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class CharacterController extends JFrame implements KeyListener {
-    private int rightKey, leftKey, upKey, downKey;
-    private boolean rightPressed, leftPressed, upPressed, downPressed;
+    private int rightKey, leftKey, upKey, downKey, pauseKey;
+    private boolean rightPressed, leftPressed, upPressed, downPressed, paused;
 
-    public CharacterController(int rightKey, int leftKey, int upKey, int downKey){
+    public CharacterController(int rightKey, int leftKey, int upKey, int downKey, int pauseKey){
         this.rightKey = rightKey;
         this.leftKey = leftKey;
         this.upKey = upKey;
         this.downKey = downKey;
+        this.pauseKey = pauseKey;
         rightPressed = false;
         leftPressed = false;
         upPressed = false;
         downPressed = false;
+        paused = false;
     }
 
 
     @Override
     public void keyTyped(KeyEvent e) {
-
     }
 
     @Override
@@ -60,6 +61,9 @@ public class CharacterController extends JFrame implements KeyListener {
 
         if (key == downKey){
             downPressed = false;
+        }
+        if (key == pauseKey){
+            paused = !paused;
         }
     }
 
@@ -117,4 +121,6 @@ public class CharacterController extends JFrame implements KeyListener {
     public boolean getDownPressed(){
         return downPressed;
     }
+
+    public boolean getPaused(){return paused;}
 }

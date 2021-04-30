@@ -10,12 +10,14 @@ public class Window extends JFrame {
         Game game = new Game();
         Height = 600;
         Width = 800;
+        PauseMenu pauseMenu = new PauseMenu(Height, Width);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setContentPane(new BackgroundPanel("Assets/Beach.png"));
         getContentPane().setLayout(new BorderLayout());
         getContentPane().setPreferredSize(new Dimension(Width, Height));
         pack();
         add(game);
+        add(pauseMenu);
         setVisible(true);
     }
 
