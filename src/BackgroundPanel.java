@@ -5,16 +5,15 @@ import java.io.File;
 
 public class BackgroundPanel extends JPanel {
     private Image image;
-    public BackgroundPanel () {
+    public BackgroundPanel(String filePath) {
         try {
-            image = ImageIO.read(new File("Assets/Beach.png"));
+            image = ImageIO.read(new File(filePath));
         } catch (Exception e) {
-            System.err.println("couldn't find image");
-            setBackground(Color.BLACK);
+            System.err.println("Couldn't find image: " + filePath);
         }
     }
     @Override
-    protected void paintComponent (Graphics g) {
+    public void paintComponent (Graphics g) {
         super.paintComponent(g);
         if (image !=null) {
             g.drawImage(image, 0, 0, getWidth(), getHeight(), this);

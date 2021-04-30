@@ -1,7 +1,5 @@
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
 
 public class Window extends JFrame {
     public static int Height;
@@ -9,17 +7,17 @@ public class Window extends JFrame {
     private Image image;
 
     public Window() {
+        Game game = new Game();
         Height = 600;
         Width = 800;
+        PauseMenu pauseMenu = new PauseMenu(Height, Width);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //setContentPane(new BackgroundPanel());
+        setContentPane(new BackgroundPanel("Assets/Beach.png"));
         getContentPane().setLayout(new BorderLayout());
         getContentPane().setPreferredSize(new Dimension(Width, Height));
         pack();
-        Game game = new Game();
         add(game);
-        BackgroundPanel backgroundPanel = new BackgroundPanel();
-        add(backgroundPanel);
+        add(pauseMenu);
         setVisible(true);
     }
 
