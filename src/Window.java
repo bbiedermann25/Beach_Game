@@ -5,6 +5,7 @@ public class Window extends JFrame {
     public static int Height;
     public static int Width;
     private Image image;
+    Inventory inventory = new Inventory();
 
     public Window() {
         Game game = new Game();
@@ -23,5 +24,6 @@ public class Window extends JFrame {
 
     public static void main(String[] args) {
         Window window = new Window();
+
     }
 }
