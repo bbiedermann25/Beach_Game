@@ -8,7 +8,7 @@ public class Game extends JPanel{
     private PauseMenu pauseMenu = new PauseMenu(600, 800);
     private CharacterController controller = new CharacterController(KeyEvent.VK_RIGHT,
             KeyEvent.VK_LEFT,KeyEvent.VK_UP, KeyEvent.VK_DOWN, KeyEvent.VK_P);
-    private Character character = new Character(350,700, getSize().width, getSize().height,
+    private Character character = new Character(400,300, getSize().width, getSize().height,
             new Dimension(20, 28), controller, pauseMenu);
     private Object object;
 
@@ -21,7 +21,7 @@ public class Game extends JPanel{
         controller = new CharacterController(KeyEvent.VK_RIGHT, KeyEvent.VK_LEFT,KeyEvent.VK_UP,
                 KeyEvent.VK_DOWN, KeyEvent.VK_P);
         addKeyListener(controller);
-        character = new Character(350,350, getSize().width, getSize().height,
+        character = new Character(400,300, getSize().width, getSize().height,
                 new Dimension(20, 28), controller, pauseMenu);
         object = new Object(character.getX(), character.getY());
         object.spawn();
@@ -39,7 +39,7 @@ public class Game extends JPanel{
         character.update();
         int x = Math.abs(character.getX() - object.x);
         int y = Math.abs(character.getY() - object.y);
-        System.out.println("x: " + (character.getX() - object.x) + " y: " + (character.getY() - object.y));
+        System.out.println("x: " + x + " y: " + y);
         if (x <= 40 && y <=40){
             object.playerNear = true;
             object.found = true;
@@ -47,6 +47,7 @@ public class Game extends JPanel{
 
                 object.playerNear = false;
                 object.found = false;
+                object = new Object(character.getX(), character.getY());
                 object.spawn();
             }
         }
