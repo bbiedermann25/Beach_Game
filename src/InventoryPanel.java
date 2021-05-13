@@ -3,42 +3,51 @@ import java.awt.*;
 
 public class InventoryPanel extends JPanel {
 
-    int watchCount = 0;
     int coinCount = 0;
     int necklaceCount = 0;
     int ringCount = 0;
-    int canCount = 0;
+    int emeraldCount = 0;
 
     public JButton coin = new JButton(String.valueOf(coinCount));
+    public JButton necklace = new JButton(String.valueOf(necklaceCount));
+    public JButton ring = new JButton(String.valueOf(ringCount));
+    public JButton emerald = new JButton(String.valueOf(emeraldCount));
 
-    public InventoryPanel(){
+    public InventoryPanel(Object object){
         setBounds(250,350,350,150);
         setBackground(Color.white);
         setLayout(new GridLayout(1,5));
 
-        Image emerald = new ImageIcon("Assets/emerald.png").getImage();
-        coin.setIcon(new ImageIcon(emerald));
-        add(coin);
+        coin.setIcon(new ImageIcon(object.getCoin()));
+        necklace.setIcon(new ImageIcon(object.getNecklace()));
+        ring.setIcon(new ImageIcon(object.getRing()));
+        emerald.setIcon(new ImageIcon(object.getEmerald()));
+        add(coin, 0);
+        add(necklace, 0);
+        add(ring, 0);
+        add(emerald, 0);
 
 
     }
-    public void addWatch(){
-        watchCount++;
+    public void add(String item){
+        if (item.equals("ring")){
+            ringCount++;
+            ring.setText(String.valueOf(ringCount));
+        }
+        if (item.equals("necklace")){
+            necklaceCount++;
+            necklace.setText(String.valueOf(necklaceCount));
+        }
+        if (item.equals("emerald")){
+            emeraldCount++;
+            emerald.setText(String.valueOf(emeraldCount));
+        }
+        if (item.equals("coin")){
+            coinCount++;
+            coin.setText(String.valueOf(coinCount));
+        }
     }
-    public void addCoin(){
-        coinCount++;
-        System.out.println(coinCount + " coins");
 
-    }
-    public void addNecklace(){
-        necklaceCount++;
-    }
-    public void addRing(){
-        ringCount++;
-    }
-    public void addCan(){
-        canCount++;
-    }
 
 
 }

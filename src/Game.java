@@ -13,7 +13,7 @@ public class Game extends JPanel{
     private Object object;
     private Meter meter = new Meter();
     private Inventory inventory;
-    private InventoryPanel inventoryPanel = new InventoryPanel();
+    private InventoryPanel inventoryPanel;
 
     public Game(){
         setFocusable(true);
@@ -26,9 +26,9 @@ public class Game extends JPanel{
         addKeyListener(controller);
         character = new Character(400,300, getSize().width, getSize().height,
                 new Dimension(20, 28), controller, pauseMenu);
-        object = new Object(character.getX(), character.getY());
-        object.spawn();
-
+        object = new Object();
+        object.setup();
+        inventoryPanel = new InventoryPanel(object);
         add(inventoryPanel);
 
     }
@@ -39,6 +39,7 @@ public class Game extends JPanel{
         character.paint(g);
         meter.paint(g);
         pauseMenu.paint(g);
+
 
     }
 
@@ -64,13 +65,10 @@ public class Game extends JPanel{
 
         if (dist <= 30){
             meter.setImage("near");
+            object.playerNear = true;
             if(controller.getCollected()) {
-                object.playerNear = true;
-                object = new Object(character.getX(), character.getY());
+                inventoryPanel.add(object.getType());
                 object.spawn();
-                inventoryPanel.addCoin();
-                inventoryPanel.coin.setText(String.valueOf(inventoryPanel.coinCount));
-
             }
 
         }
