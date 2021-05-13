@@ -7,10 +7,11 @@ import java.awt.event.KeyEvent;
 public class Game extends JPanel{
     private PauseMenu pauseMenu = new PauseMenu(600, 800);
     private CharacterController controller = new CharacterController(KeyEvent.VK_RIGHT,
-            KeyEvent.VK_LEFT,KeyEvent.VK_UP, KeyEvent.VK_DOWN, KeyEvent.VK_P);
+            KeyEvent.VK_LEFT,KeyEvent.VK_UP, KeyEvent.VK_DOWN, KeyEvent.VK_P, KeyEvent.VK_ENTER);
     private Character character = new Character(400,300, getSize().width, getSize().height,
             new Dimension(20, 28), controller, pauseMenu);
     private Object object;
+    private Meter meter = new Meter();
     private Inventory inventory;
 
     public Game(){
@@ -20,7 +21,7 @@ public class Game extends JPanel{
         Timer timer = new Timer(16, new TimerListener());
         timer.start();
         controller = new CharacterController(KeyEvent.VK_RIGHT, KeyEvent.VK_LEFT,KeyEvent.VK_UP,
-                KeyEvent.VK_DOWN, KeyEvent.VK_P);
+                KeyEvent.VK_DOWN, KeyEvent.VK_SPACE, KeyEvent.VK_ENTER);
         addKeyListener(controller);
         character = new Character(400,300, getSize().width, getSize().height,
                 new Dimension(20, 28), controller, pauseMenu);
@@ -34,7 +35,9 @@ public class Game extends JPanel{
     public void paintComponent(Graphics g) {
         object.paint(g);
         character.paint(g);
+        meter.paint(g);
         pauseMenu.paint(g);
+
     }
 
     private void update(){
@@ -45,7 +48,8 @@ public class Game extends JPanel{
         if (x <= 40 && y <=40){
             object.playerNear = true;
             object.found = true;
-            inventory.buildInventory();
+            meter.setImage(4);
+            /**
             if(x <= 4 || y <= 4){
 
                 object.playerNear = false;
@@ -54,6 +58,16 @@ public class Game extends JPanel{
                 object.spawn();
 
             }
+             */
+        }
+        else if (x <= 40 && y > 40){
+            meter.setImage(2);
+        }
+        else if (x > 40 && y <= 40){
+            meter.setImage(3);
+        }
+        else{
+            meter.setImage(1);
         }
 
     }
