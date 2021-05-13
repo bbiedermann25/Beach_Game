@@ -14,11 +14,9 @@ public class Game extends JPanel{
     private Meter meter = new Meter();
     private Inventory inventory;
     private InventoryPanel inventoryPanel = new InventoryPanel();
-    //private MainMenu mainMenu = new MainMenu();
 
     public Game(){
         setFocusable(true);
-
         setOpaque(false);
         setSize(800, 600);
         Timer timer = new Timer(16, new TimerListener());
@@ -32,8 +30,6 @@ public class Game extends JPanel{
         object.spawn();
 
         add(inventoryPanel);
-
-
 
     }
 
@@ -50,12 +46,6 @@ public class Game extends JPanel{
         character.update();
         int x = Math.abs(character.getX() - object.x);
         int y = Math.abs(character.getY() - object.y);
-
-        System.out.println("x: " + x + " y: " + y);
-        if (x <= 40 && y <=40){
-            meter.setImage(4);
-            //object is found, disappears, adds to inventory
-
         int dist = (int) Math.sqrt((Math.pow(x, 2)) + Math.pow(y,2));
 
         if (x <= 30){
@@ -74,7 +64,6 @@ public class Game extends JPanel{
 
         if (dist <= 30){
             meter.setImage("near");
-
             if(controller.getCollected()) {
                 object.playerNear = true;
                 object = new Object(character.getX(), character.getY());
@@ -116,7 +105,4 @@ public class Game extends JPanel{
             repaint();
         }
     }
-
-
-
 }
