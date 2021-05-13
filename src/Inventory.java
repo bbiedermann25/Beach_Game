@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class Inventory extends JPanel {
+public class Inventory {
     HashMap<String, Integer> objectInventory = new HashMap<String, Integer>();
-    int watchCount = 0;
+   /* int watchCount = 0;
     int coinCount = 0;
     int necklaceCount = 0;
     int ringCount = 0;
@@ -20,7 +20,7 @@ public class Inventory extends JPanel {
         objectInventory.put("Beer Can", canCount);
     }
 
-    public void addWatch(){
+    /*public void addWatch(){
         watchCount++;
     }
     public void addCoin(){
@@ -34,12 +34,7 @@ public class Inventory extends JPanel {
     }
     public void addCan(){
         canCount++;
-    }
+    }*/
 
-    public Inventory(){
-        setFocusable(true);
-        setSize(600,100);
-        setBackground(Color.black);
-    }
 
 }

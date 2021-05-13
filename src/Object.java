@@ -11,8 +11,7 @@ public class Object extends JPanel {
     private Image emerald = new ImageIcon("Assets/emerald.png").getImage();
     Random rd = new Random();
     //List<String> inv = new ArrayList<String>();
-    public Object (int px, int py)
-    {
+    public Object (int px, int py){
         this.px = px;
         this.py = py;
     }

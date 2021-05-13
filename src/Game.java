@@ -12,6 +12,7 @@ public class Game extends JPanel{
             new Dimension(20, 28), controller, pauseMenu);
     private Object object;
     private Inventory inventory;
+    private InventoryPanel inventoryPanel = new InventoryPanel();
 
     public Game(){
         setFocusable(true);
@@ -26,7 +27,8 @@ public class Game extends JPanel{
                 new Dimension(20, 28), controller, pauseMenu);
         object = new Object(character.getX(), character.getY());
         object.spawn();
-        
+
+        add(inventoryPanel);
 
     }
 
@@ -41,18 +43,22 @@ public class Game extends JPanel{
         character.update();
         int x = Math.abs(character.getX() - object.x);
         int y = Math.abs(character.getY() - object.y);
+        //System.out.println("x: " + (character.getX() - object.x) + " y: " + (character.getY() - object.y));
+
+        //make object opaque
         System.out.println("x: " + x + " y: " + y);
         if (x <= 40 && y <=40){
             object.playerNear = true;
             object.found = true;
-            inventory.buildInventory();
-            if(x <= 4 || y <= 4){
 
+            //player close enough to add object to inventory, make object transparent
+            if(x <= 4 || y <= 4){
                 object.playerNear = false;
                 object.found = false;
                 object = new Object(character.getX(), character.getY());
                 object.spawn();
-
+                inventoryPanel.addCoin();
+                inventoryPanel.coin.setText(String.valueOf(inventoryPanel.coinCount));
             }
         }
 
