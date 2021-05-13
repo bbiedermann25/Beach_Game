@@ -27,8 +27,8 @@ public class InventoryPanel extends JPanel {
         add(ring, 0);
         add(emerald, 0);
 
-
     }
+
     public void add(String item){
         if (item.equals("ring")){
             ringCount++;
@@ -47,7 +47,6 @@ public class InventoryPanel extends JPanel {
             coin.setText(String.valueOf(coinCount));
         }
     }
-
 
 
 }
