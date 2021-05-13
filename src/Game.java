@@ -13,6 +13,7 @@ public class Game extends JPanel{
     private Object object;
     private Meter meter = new Meter();
     private Inventory inventory;
+    private InventoryPanel inventoryPanel = new InventoryPanel();
 
     public Game(){
         setFocusable(true);
@@ -27,7 +28,8 @@ public class Game extends JPanel{
                 new Dimension(20, 28), controller, pauseMenu);
         object = new Object(character.getX(), character.getY());
         object.spawn();
-        
+
+        add(inventoryPanel);
 
     }
 
@@ -56,7 +58,8 @@ public class Game extends JPanel{
                 object.found = false;
                 object = new Object(character.getX(), character.getY());
                 object.spawn();
-
+                inventoryPanel.addCoin();
+                inventoryPanel.coin.setText(String.valueOf(inventoryPanel.coinCount));
             }
              */
         }
