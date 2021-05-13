@@ -50,10 +50,31 @@ public class Game extends JPanel{
         character.update();
         int x = Math.abs(character.getX() - object.x);
         int y = Math.abs(character.getY() - object.y);
+
         System.out.println("x: " + x + " y: " + y);
         if (x <= 40 && y <=40){
             meter.setImage(4);
             //object is found, disappears, adds to inventory
+
+        int dist = (int) Math.sqrt((Math.pow(x, 2)) + Math.pow(y,2));
+
+        if (x <= 30){
+            meter.setXClose(true);
+        }
+        if (y <= 30){
+            meter.setYClose(true);
+        }
+        if (x > 30){
+            meter.setXClose(false);
+        }
+        if (y > 30){
+            meter.setYClose(false);
+        }
+
+
+        if (dist <= 30){
+            meter.setImage("near");
+
             if(controller.getCollected()) {
                 object.playerNear = true;
                 object = new Object(character.getX(), character.getY());
@@ -64,14 +85,26 @@ public class Game extends JPanel{
             }
 
         }
-        else if (x <= 40 && y > 40){
-            meter.setImage(2);
+        else if (dist <= 40){
+            meter.setImage("near1");
         }
-        else if (x > 40 && y <= 40){
-            meter.setImage(3);
+        else if (dist <= 60){
+            meter.setImage("near2");
+        }
+        else if (dist <= 80){
+            meter.setImage("near3");
+        }
+        else if (dist <= 100){
+            meter.setImage("far3");
+        }
+        else if (dist <= 150){
+            meter.setImage("far2");
+        }
+        else if (dist <= 200){
+            meter.setImage("far1");
         }
         else{
-            meter.setImage(1);
+            meter.setImage("far");
         }
 
     }
