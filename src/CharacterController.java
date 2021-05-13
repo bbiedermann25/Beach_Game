@@ -4,7 +4,7 @@ import java.awt.event.KeyListener;
 
 public class CharacterController extends JFrame implements KeyListener {
     private int rightKey, leftKey, upKey, downKey, pauseKey, collectKey;
-    private boolean rightPressed, leftPressed, upPressed, downPressed, paused;
+    private boolean rightPressed, leftPressed, upPressed, downPressed, collectPressed, paused;
 
     public CharacterController(int rightKey, int leftKey, int upKey, int downKey, int pauseKey, int collectKey){
         this.rightKey = rightKey;
@@ -17,6 +17,7 @@ public class CharacterController extends JFrame implements KeyListener {
         leftPressed = false;
         upPressed = false;
         downPressed = false;
+        collectPressed = false;
         paused = false;
     }
 
@@ -43,6 +44,10 @@ public class CharacterController extends JFrame implements KeyListener {
         if (key == downKey){
             downPressed = true;
         }
+
+        if (key == collectKey){
+            collectPressed = true;
+        }
     }
 
     @Override
@@ -63,6 +68,11 @@ public class CharacterController extends JFrame implements KeyListener {
         if (key == downKey){
             downPressed = false;
         }
+
+        if (key == collectKey){
+            collectPressed = false;
+        }
+
         if (key == pauseKey){
             paused = !paused;
         }
@@ -121,6 +131,10 @@ public class CharacterController extends JFrame implements KeyListener {
 
     public boolean getDownPressed(){
         return downPressed;
+    }
+
+    public boolean getCollected(){
+        return collectPressed;
     }
 
     public boolean getPaused(){return paused;}

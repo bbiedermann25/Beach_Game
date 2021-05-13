@@ -17,20 +17,12 @@ public class Object extends JPanel {
     }
 
     public void spawn(){
-        if (px >= 400){
-            this.x = px - rd.nextInt(292) - 100;
-        }else{
-            this.x = px + rd.nextInt(293) + 100;
-        }
-
-        if (py >= 300){
-            this.y = py - rd.nextInt(192) - 100;
-        }else{
-            this.y = py + rd.nextInt(193) + 100;
-        }
+        this.x = rd.nextInt(792);
+        this.y = rd.nextInt(592);
         playerNear = false;
         found = false;
     }
+
 
     public void paint(Graphics g){
         if(playerNear){

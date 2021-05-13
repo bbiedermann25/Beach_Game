@@ -48,20 +48,16 @@ public class Game extends JPanel{
         int y = Math.abs(character.getY() - object.y);
         System.out.println("x: " + x + " y: " + y);
         if (x <= 40 && y <=40){
-            object.playerNear = true;
-            object.found = true;
             meter.setImage(4);
-            /**
-            if(x <= 4 || y <= 4){
-
-                object.playerNear = false;
-                object.found = false;
+            if(controller.getCollected()) {
+                object.playerNear = true;
                 object = new Object(character.getX(), character.getY());
                 object.spawn();
                 inventoryPanel.addCoin();
                 inventoryPanel.coin.setText(String.valueOf(inventoryPanel.coinCount));
+
             }
-             */
+
         }
         else if (x <= 40 && y > 40){
             meter.setImage(2);
