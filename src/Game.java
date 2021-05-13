@@ -14,9 +14,11 @@ public class Game extends JPanel{
     private Meter meter = new Meter();
     private Inventory inventory;
     private InventoryPanel inventoryPanel = new InventoryPanel();
+    //private MainMenu mainMenu = new MainMenu();
 
     public Game(){
         setFocusable(true);
+
         setOpaque(false);
         setSize(800, 600);
         Timer timer = new Timer(16, new TimerListener());
@@ -30,6 +32,8 @@ public class Game extends JPanel{
         object.spawn();
 
         add(inventoryPanel);
+
+
 
     }
 
@@ -78,4 +82,9 @@ public class Game extends JPanel{
             repaint();
         }
     }
+    public void start(){
+        //add(inventoryPanel);
+    }
+
+
 }
