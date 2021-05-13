@@ -9,7 +9,7 @@ public class InventoryPanel extends JPanel {
     int ringCount = 0;
     int canCount = 0;
 
-    public JButton coin = new JButton(String.valueOf(coinCount));
+    public JLabel coin = new JLabel(String.valueOf(coinCount));
 
     public InventoryPanel(){
         setBounds(250,350,350,150);
