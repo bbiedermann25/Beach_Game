@@ -53,6 +53,7 @@ public class Game extends JPanel{
         System.out.println("x: " + x + " y: " + y);
         if (x <= 40 && y <=40){
             meter.setImage(4);
+            //object is found, disappears, adds to inventory
             if(controller.getCollected()) {
                 object.playerNear = true;
                 object = new Object(character.getX(), character.getY());
@@ -82,9 +83,7 @@ public class Game extends JPanel{
             repaint();
         }
     }
-    public void start(){
-        //add(inventoryPanel);
-    }
+
 
 
 }

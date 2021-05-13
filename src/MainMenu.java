@@ -6,11 +6,13 @@ public class MainMenu extends JPanel {
 
     private JLabel start;
     private Game game = new Game();
-    private Window window;
+    private Window frame;
     private Character character;
 
-    public MainMenu() {
-        //this.game = game;
+    public MainMenu(Window frame) {
+        setSize(800,600);
+
+        this.frame = frame;
         setFocusable(true);
         requestFocusInWindow(true);
         setLayout(new BorderLayout());
@@ -39,7 +41,7 @@ public class MainMenu extends JPanel {
     private class StartMouseListener extends MouseAdapter {
         @Override
         public void mouseClicked(MouseEvent e) {
-            startGame();
+            frame.startGame();
         }
 
         @Override
@@ -61,15 +63,15 @@ public class MainMenu extends JPanel {
             int keyPressed = e.getKeyCode();
             //System.out.println("Key pressed: "+e.getKeyChar() + " " +e.getKeyCode());
             if (keyPressed == KeyEvent.VK_ENTER) {
-                startGame();
+                frame.startGame();
             }
         }
     }
     public void startGame(){
-
+        //Window window = new Window();
         setVisible(false);
         setFocusable(false);
-        //game.start();
+        frame.startGame();
 
     }
 }

@@ -8,6 +8,25 @@ public class Window extends JFrame {
     private MainMenu mainMenu;
 
     public Window() {
+
+
+        Height = 600;
+        Width = 800;
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setContentPane(new BackgroundPanel("Assets/Beach.png"));
+        getContentPane().setLayout(new BorderLayout());
+        getContentPane().setPreferredSize(new Dimension(Width, Height));
+
+
+        pack();
+        mainMenu = new MainMenu(this );
+        add(mainMenu);
+        setVisible(true);
+
+
+
+    }
+    public void startGame(){
         Game game = new Game();
         Height = 600;
         Width = 800;
@@ -17,16 +36,17 @@ public class Window extends JFrame {
         setContentPane(new BackgroundPanel("Assets/Beach.png"));
         getContentPane().setLayout(new BorderLayout());
         getContentPane().setPreferredSize(new Dimension(Width, Height));
-       
+
         pack();
 
         add(game);
         add(pauseMenu);
-        mainMenu = new MainMenu();
-        add(mainMenu);
+
         setVisible(true);
 
+        game.requestFocus();
 
+        //call man menu start
 
     }
 
