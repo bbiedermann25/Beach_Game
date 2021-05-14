@@ -4,7 +4,7 @@
 This is a joint class final project for CS:3210 at The University of Iowa
 
 ## Objective
-The objective of this game is to try and collect as much stuff as possibleb on a beach using the main character. 
+The objective of this game is to try and collect as much stuff as possible on a beach using the main character. 
 
 ## Info
 - The main character is controllable with the up, down, right, left keys. 
