@@ -8,11 +8,10 @@ public class Game extends JPanel{
     private PauseMenu pauseMenu = new PauseMenu(600, 800);
     private CharacterController controller = new CharacterController(KeyEvent.VK_RIGHT,
             KeyEvent.VK_LEFT,KeyEvent.VK_UP, KeyEvent.VK_DOWN, KeyEvent.VK_P, KeyEvent.VK_ENTER);
-    private Character character = new Character(400,300, getSize().width, getSize().height,
+    private Character character = new Character(400,300,
             new Dimension(20, 28), controller, pauseMenu);
     private Object object;
     private Meter meter = new Meter();
-    private Inventory inventory;
     private InventoryPanel inventoryPanel;
 
     public Game(){
@@ -24,8 +23,7 @@ public class Game extends JPanel{
         controller = new CharacterController(KeyEvent.VK_RIGHT, KeyEvent.VK_LEFT,KeyEvent.VK_UP,
                 KeyEvent.VK_DOWN, KeyEvent.VK_SPACE, KeyEvent.VK_ENTER);
         addKeyListener(controller);
-        character = new Character(400,300, getSize().width, getSize().height,
-                new Dimension(20, 28), controller, pauseMenu);
+        character = new Character(400,300, new Dimension(20, 28), controller, pauseMenu);
         object = new Object();
         object.setup();
         inventoryPanel = new InventoryPanel(object);
@@ -44,11 +42,15 @@ public class Game extends JPanel{
     }
 
     private void update(){
+        //updates character
         character.update();
+
+        //calculates euclidean distance from object
         int x = Math.abs(character.getX() - object.x);
         int y = Math.abs(character.getY() - object.y);
         int dist = (int) Math.sqrt((Math.pow(x, 2)) + Math.pow(y,2));
 
+        //cases that change the meter depending on player distance from object
         if (x <= 30){
             meter.setXClose(true);
         }
@@ -66,6 +68,7 @@ public class Game extends JPanel{
         if (dist <= 30){
             meter.setImage("near");
             object.playerNear = true;
+            //if player presses collect then object is added to inventory and respawned
             if(controller.getCollected()) {
                 inventoryPanel.add(object.getType());
                 object.spawn();

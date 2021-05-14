@@ -8,14 +8,17 @@ import java.io.File;
 import java.io.IOException;
 
 public class Character extends JPanel{
+    /**
+     * Instance Variables.
+     * mx and my used for player motion
+     * all instance variables for character sprites are declared
+     */
     private int x, y;
-    private int width, height;
     private int mx = 0, my = 0;
     private int orientation = 0;
     private boolean paused;
     private CharacterController controller;
     private PauseMenu pauseMenu;
-    private Dimension size;
     private Image right_idle = new ImageIcon("Assets/MC_right_idle.png").getImage();
     private Image right1 = new ImageIcon("Assets/MC_right1.png").getImage();
     private Image right2 = new ImageIcon("Assets/MC_right2.png").getImage();
@@ -29,13 +32,10 @@ public class Character extends JPanel{
     private Image down1 = new ImageIcon("Assets/MC_down1.png").getImage();
     private Image down2 = new ImageIcon("Assets/MC_down2.png").getImage();
 
-    public Character(int x, int y, int width, int height, Dimension size,
+    public Character(int x, int y, Dimension size,
                      CharacterController controller, PauseMenu pauseMenu){
         this.x = x;
         this.y = y;
-        this.height = height;
-        this.width = width;
-        this.size = size;
         this.controller = controller;
         this.pauseMenu = pauseMenu;
     }
@@ -49,8 +49,12 @@ public class Character extends JPanel{
     }
 
     public void paint(Graphics g){
+        //character motion is done using the paint function
+        //m is for x movement and n is for y movement
         int m = mx % 20;
         int n = my % 20;
+
+        //standing still
         if (m == 0 && n == 0) {
             switch (orientation) {
                 case 0 -> g.drawImage(idle, x, y, null);
@@ -58,7 +62,7 @@ public class Character extends JPanel{
                 case 2 -> g.drawImage(left_idle, x, y, null);
                 case 3 -> g.drawImage(down_idle, x, y, null);
             }
-
+        //moving right
         } else if (m > 0 && m < 6) {
             g.drawImage(right1, x, y, null);
         } else if (m > 5 && m < 11) {
@@ -67,7 +71,10 @@ public class Character extends JPanel{
             g.drawImage(right2, x, y, null);
         } else if (m > 15) {
             g.drawImage(right_idle, x, y, null);
-        } else if (m < 0 && m > -6) {
+        }
+
+        //moving left
+        else if (m < 0 && m > -6) {
             g.drawImage(left1, x, y, null);
         } else if (m < -5 && m > -11) {
             g.drawImage(left_idle, x, y, null);
@@ -75,7 +82,10 @@ public class Character extends JPanel{
             g.drawImage(left2, x, y, null);
         } else if (m < -15) {
             g.drawImage(left_idle, x, y, null);
-        } else if (n > 0 && n < 6) {
+        }
+
+        //moving up
+        else if (n > 0 && n < 6) {
             g.drawImage(up1, x, y, null);
         } else if (n > 5 && n < 11) {
             g.drawImage(idle, x, y, null);
@@ -83,6 +93,8 @@ public class Character extends JPanel{
             g.drawImage(up2, x, y, null);
         } else if (n > 15) {
             g.drawImage(idle, x, y, null);
+
+        //moving down
         } else if (n > -6) {
             g.drawImage(down1, x, y, null);
         } else if (n > -11) {
@@ -96,12 +108,16 @@ public class Character extends JPanel{
     }
 
     public void update() {
+        //checking to see if paused
         paused = controller.getPaused();
+        //updating to pause menu
         pauseMenu.setPaused(paused);
+        //if not paused then player movement is updated
         if(!paused) {
             x += controller.getCharacterMovementX();
             y += controller.getCharacterMovementY();
 
+            //bounds are set
             if (x < 0) {
                 x = 0;
             }
@@ -116,28 +132,29 @@ public class Character extends JPanel{
                 y = 572;
             }
 
+            //both right an left pressed
             if (controller.getRightPressed() && controller.getLeftPressed()) {
                 mx = 0;
             }
 
+            //right pressed
             if (controller.getRightPressed() && !controller.getLeftPressed()) {
                 mx++;
                 orientation = 1;
             }
 
+            //left pressed
             if (controller.getLeftPressed() && !controller.getRightPressed()) {
                 mx--;
                 orientation = 2;
             }
 
-            if (!controller.getLeftPressed() && !controller.getRightPressed()) {
-                mx = 0;
-            }
-
+            //both up and down pressed
             if (controller.getUpPressed() && controller.getDownPressed()) {
                 my = 0;
             }
 
+            //up pressed
             if (controller.getUpPressed() && !controller.getDownPressed()) {
                 my++;
                 if (!controller.getRightPressed() || !controller.getLeftPressed()) {
@@ -145,17 +162,13 @@ public class Character extends JPanel{
                 }
             }
 
+            //down pressed
             if (controller.getDownPressed() && !controller.getUpPressed()) {
                 my--;
                 if (!controller.getRightPressed() || !controller.getLeftPressed()) {
                     orientation = 3;
                 }
             }
-
-            if (!controller.getUpPressed() && !controller.getDownPressed()) {
-                my = 0;
-            }
         }
     }
-
 }

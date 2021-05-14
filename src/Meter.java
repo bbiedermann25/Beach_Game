@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Meter  extends JPanel {
+    //image instance variables
     private Image meter;
     private Image near = new ImageIcon("Assets/near.png").getImage();
     private Image near1 = new ImageIcon("Assets/near1.png").getImage();
@@ -14,6 +15,7 @@ public class Meter  extends JPanel {
     private Image x= new ImageIcon("Assets/x.png").getImage();
     private Image y = new ImageIcon("Assets/y.png").getImage();
 
+    //booleans for whether or not the character is close on on each axis
     private boolean xClose = false;
     private boolean yClose = false;
 
@@ -24,6 +26,7 @@ public class Meter  extends JPanel {
         this.yClose = yClose;
     }
 
+    //sets image based on what string it is told. This process is done in the Game class
     public void setImage(String s){
         //not close
         if (s.equals("near")){
@@ -59,6 +62,10 @@ public class Meter  extends JPanel {
 
     public void paint(Graphics g){
         g.drawImage(meter, 676, 476, null);
+
+        //if character is close on the x or y then a x or y with
+        //a check mark is drawn over the meter indicating that
+        //the player is on the same x or y as the object
         if(xClose){
             g.drawImage(x, 676, 451, null);
         }

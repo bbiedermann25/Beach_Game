@@ -18,11 +18,10 @@ public class PauseMenu extends JPanel {
     }
 
     public void paint(Graphics g){
-        if(paused){
+        //if paused then pause screen drawn
+        if(paused) {
             g.drawImage(pauseImg, 0, 0, null);
             setOpaque(false);
-        }else{
-            setOpaque(true);
         }
     }
 }

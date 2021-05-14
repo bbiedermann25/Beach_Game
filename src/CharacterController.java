@@ -80,16 +80,20 @@ public class CharacterController extends JFrame implements KeyListener {
 
     public int getCharacterMovementX(){
         if (rightPressed && !leftPressed){
+            //movement diagonally up/down and right
             if (upPressed || downPressed){
                 return 1;
             }
+            //moving right
             return 2;
         }
 
         else if (leftPressed && !rightPressed){
+            //movement diagonally up/down and left
             if (upPressed || downPressed){
                 return -1;
             }
+            //moving left
             return -2;
         }
 
@@ -101,15 +105,19 @@ public class CharacterController extends JFrame implements KeyListener {
 
     public int getCharacterMovementY(){
         if (upPressed && !downPressed){
+            //movement diagonally up and right/left
             if (rightPressed || leftPressed){
                 return -1;
             }
+            //movement up
             return -2;
         }
         else if (downPressed && !upPressed){
+            //movement diagonally down and right/left
             if (rightPressed || leftPressed){
                 return 1;
             }
+            //movement down
             return 2;
         }
         else{
